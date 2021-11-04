@@ -14,6 +14,11 @@ import {
 import {Price} from '../models';
 import {PriceRepository} from '../repositories';
 
+
+const Sentry = require("@sentry/node");
+// or use es6 import statements
+// import * as Sentry from '@sentry/node';
+
 export class PriceControllerController {
   constructor(
     @repository(PriceRepository)
@@ -219,5 +224,24 @@ export class PriceControllerController {
     costoTotal += envio;
 
     return costoTotal;
+  }
+
+  @get('/error')
+  async error():Promise<void>
+  {
+    const transaction = Sentry.startTransaction({
+      op: "test",
+      name: "My First Test Transaction",
+    });
+
+    setTimeout(() => {
+      try {
+        //foo();
+      } catch (e) {
+        Sentry.captureException(e);
+      } finally {
+        transaction.finish();
+      }
+    }, 99);
   }
 }

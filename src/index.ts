@@ -1,4 +1,15 @@
+import * as Sentry from "@sentry/node";
 import {ApplicationConfig, MicroservicesApplication} from './application';
+
+
+
+Sentry.init({
+  dsn: "https://9da0f4551e5b476eaa5cf3239ea75539@o1059722.ingest.sentry.io/6048566",
+
+  // We recommend adjusting this value in production, or using tracesSampler
+  // for finer control
+  tracesSampleRate: 1.0,
+});
 
 export * from './application';
 
