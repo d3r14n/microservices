@@ -142,10 +142,82 @@ export class PriceControllerController {
     await this.priceRepository.deleteById(id);
   }
 
-  @get('/prices')
-  async hello(
-    @param.path.string('postalcode') postalcode:string,
-  ): Promise<String>{
-    return "Hola";
+  /*precioTotal(costo: number, descuento: number, zona: number, envio: number)
+  {
+    let costoTotal = (costo - descuento);
+    switch(zona)
+    {
+      case 1:
+        costoTotal += (costoTotal * 0.16) + (costoTotal * 0.08)
+        break;
+
+      case 2:
+        costoTotal += (costoTotal * 0.17) + (costoTotal * 0.15)
+        break;
+
+      case 3:
+        costoTotal += (costoTotal * 0.15) + (costoTotal * 0.2)
+        break;
+
+      case 4:
+        costoTotal += (costoTotal * 0.12) + (costoTotal * 0.06)
+        break;
+
+      case 5:
+        costoTotal += (costoTotal * 0.1) + (costoTotal * 0.05)
+        break;
+    }
+
+    costoTotal += envio;
+
+    return costoTotal;
+  }*/
+
+  @get('prices/sendCP')
+  async sendCP(@param.path.number('cp') cp : number) : Promise<number>
+  {
+    return cp;
+  }
+
+  @get('prices/sendMethod')
+  async sendMethod(@param.path.string('method') method : string) : Promise<string>
+  {
+    return method;
+  }
+
+  @get('/prices/total')
+  async precioTotal(
+    @param.path.number('costo') costo : number,
+    @param.path.number('descuento') descuento : number,
+    @param.path.number('zona') zona : number,
+    @param.path.number('envio') envio : number
+  ): Promise<number> {
+    let costoTotal = (costo - descuento);
+    switch(zona)
+    {
+      case 1:
+        costoTotal += (costoTotal * 0.16) + (costoTotal * 0.08)
+        break;
+
+      case 2:
+        costoTotal += (costoTotal * 0.17) + (costoTotal * 0.15)
+        break;
+
+      case 3:
+        costoTotal += (costoTotal * 0.15) + (costoTotal * 0.2)
+        break;
+
+      case 4:
+        costoTotal += (costoTotal * 0.12) + (costoTotal * 0.06)
+        break;
+
+      case 5:
+        costoTotal += (costoTotal * 0.1) + (costoTotal * 0.05)
+        break;
+    }
+
+    costoTotal += envio;
+
+    return costoTotal;
   }
 }
