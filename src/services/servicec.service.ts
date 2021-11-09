@@ -6,6 +6,7 @@ export interface Servicec {
   // this is where you define the Node.js methods that will be
   // mapped to REST/SOAP/gRPC operations as stated in the datasource
   // json file.
+  postales(c_postal:number, kilogramos:number, formaPago:string, cupon:string): Promise<object>;
 }
 
 export class ServicecProvider implements Provider<Servicec> {

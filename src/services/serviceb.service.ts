@@ -6,6 +6,7 @@ export interface Serviceb {
   // this is where you define the Node.js methods that will be
   // mapped to REST/SOAP/gRPC operations as stated in the datasource
   // json file.
+  getState(postalcode:number): Promise<string>;
 }
 
 export class ServicebProvider implements Provider<Serviceb> {

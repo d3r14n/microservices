@@ -4,7 +4,7 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: 'servicec',
   connector: 'rest',
-  baseURL: 'https://servicec.com',
+  baseURL: 'https://microservicio-c.herokuapp.com',
   crud: true,
   options: {
     headers: {
@@ -16,14 +16,16 @@ const config = {
     {
       template: {
         method: "POST",
-        url: "https://servicec.com/getEnvio",
+        url: "https://microservicio-c.herokuapp.com/postales/",
         form: {
-          "orderId": "^{orderId}",
-          "amount": "^{amount}",
+          "c_postal": "^{c_postal}",
+          "kilogramos": "^{kilogramos}",
+          "formaPago": "^{formaPago}",
+          "cupon": "^{cupon}"
         }
       },
       functions: {
-        createOrder: ["amount", "orderId"]
+        postales: ["c_postal", "kilogramos", "formaPago", "cupon"]
       }
     }
   ]

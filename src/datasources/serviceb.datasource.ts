@@ -4,7 +4,7 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: 'serviceb',
   connector: 'rest',
-  baseURL: 'https://serviceb.com',
+  baseURL: 'https://microservicio-promociones.herokuapp.com/explorer',
   crud: true,
   options: {
     headers: {
@@ -16,7 +16,7 @@ const config = {
     {
       template: {
         method: "GET",
-        url: "https://serviceb.com/getState/{postalcode}"
+        url: "https://microservicio-promociones.herokuapp.com/explorer/getState/{postalcode}"
       },
       functions: {
         getState: ["postalcode"]
