@@ -187,7 +187,13 @@ export class PriceControllerController {
   @get('prices/sendMethod')
   async sendMethod(@param.path.string('method') method : string) : Promise<string>
   {
-    return method;
+    return method.toLowerCase();
+  }
+
+  @get('prices/sendCoupon')
+  async sendCoupon(@param.path.string('coupon') coupon : string) : Promise<string>
+  {
+    return coupon.toUpperCase();
   }
 
   @get('/prices/total')
